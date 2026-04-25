@@ -29,12 +29,28 @@ class LoginPage {
     this.clickLoginButton();
   }
 
-  getErrorMessage() {
-    return cy.get('[data-testid="message-error"]');
+  getMessage() {
+    return cy.get('[data-testid="message"]');
   }
 
-  getSuccessMessage() {
-    return cy.get('[data-testid="message-success"]');
+  getGovBar() {
+    return cy.get('[data-testid="gov-bar"]');
+  }
+
+  expectMessageContains(text) {
+    this.getMessage().should("contain.text", text);
+  }
+
+  expectOnDashboard() {
+    cy.url().should("include", "/dashboard");
+  }
+
+  expectNotOnDashboard() {
+    cy.url().should("not.include", "/dashboard");
+  }
+
+  expectGovBarVisible() {
+    this.getGovBar().should("be.visible");
   }
 }
 
