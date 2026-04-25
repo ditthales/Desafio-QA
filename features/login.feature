@@ -76,6 +76,10 @@ Funcionalidade: Login de Usuário
     Quando eu valido o status do endpoint de login
     Então o serviço deve responder com status esperado
 
+  // Esse cenário foi solicitado no PDF enviado por e-mail, porém
+  // não existe menção a essa barra no projeto. 
+  // O teste relacionado a ele foi realizado, porém falha pois não
+  // existe a barra no HTML.
   @SCN-LOGIN-011
   Cenário: Acessibilidade na tela de login
     Quando eu acesso a tela de login
