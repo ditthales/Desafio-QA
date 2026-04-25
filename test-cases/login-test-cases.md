@@ -186,3 +186,33 @@ Resultado Esperado:
 - Nenhum acesso nao autorizado concedido
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
+CT-016 - Bypass de autenticacao via query
+Cenário relacionado: SCN-LOGIN-009
+Pre-condição:
+- Usuario nao esta autenticado
+Passos:
+1. Acessar diretamente "/dashboard?admin=true"
+Resultado Esperado:
+- Redirecionamento para a pagina de login ("/")
+- Dashboard nao deve ser exibido
+
+CT-017 - Health check do endpoint de login
+Cenário relacionado: SCN-LOGIN-010
+Pre-condição:
+- Servico em execucao
+Passos:
+1. Enviar requisicao POST para "/login" sem body
+Resultado Esperado:
+- Resposta com status 400
+- Mensagem de erro: "Usuário e senha são obrigatórios"
+
+CT-018 - Acessibilidade: Barra de Governo e contraste
+Cenário relacionado: SCN-LOGIN-011
+Pre-condição:
+- Usuario esta na pagina de login ("/")
+Passos:
+1. Verificar se a Barra de Governo esta visivel
+2. Verificar contraste entre texto e fundo da Barra de Governo
+Resultado Esperado:
+- Barra de Governo presente e visivel
+- Contraste atende ao minimo de 4.5:1
