@@ -46,12 +46,12 @@
 	- [BUG-037: ID aceita qualquer caractere](#bug-037)
 	- [BUG-038: Nome aceita números e caracteres especiais](#bug-038)
 	- [BUG-039: Sem retorno para o dashboard a partir da coleta](#bug-039)
-- [Historico](#historico)
-	- [BUG-040: Historico mostra registros duplicados](#bug-040)
-- [Seguranca](#seguranca)
-	- [BUG-041: Query de login vulneravel a SQL injection](#bug-041)
-	- [BUG-042: /api/user expoe email e senha](#bug-042)
-	- [BUG-043: Logout nao destroi sessao no servidor](#bug-043)
+- [Histórico](#historico)
+	- [BUG-040: Histórico mostra registros duplicados](#bug-040)
+- [Segurança](#seguranca)
+	- [BUG-041: Query de login vulnerável a SQL injection](#bug-041)
+	- [BUG-042: /api/user expõe email e senha](#bug-042)
+	- [BUG-043: Logout não destrói sessão no servidor](#bug-043)
 
 <a id="registro"></a>
 ## Registro
@@ -1495,10 +1495,10 @@ Não há opção visível para voltar ao dashboard.
 Navegação confusa e retenção indevida na tela.
 
 <a id="historico"></a>
-## Historico
+## Histórico
 
 <a id="bug-040"></a>
-### BUG-040: Historico mostra registros duplicados
+### BUG-040: Histórico mostra registros duplicados
 
 **Severidade**: Média
 **Categoria**: Lógica
@@ -1506,7 +1506,7 @@ Navegação confusa e retenção indevida na tela.
 
 #### Descrição
 
-A listagem de historico exibe registros duplicados apos salvar uma coleta.
+A listagem de histórico exibe registros duplicados após salvar uma coleta.
 
 #### Ambiente
 
@@ -1516,14 +1516,14 @@ A listagem de historico exibe registros duplicados apos salvar uma coleta.
 
 #### Passos para Reproduzir
 
-1. Fazer login e acessar o historico
+1. Fazer login e acessar o histórico
 2. Registrar uma nova coleta
-3. Voltar ao historico
+3. Voltar ao histórico
 4. Observar a listagem de registros
 
 #### Resultado Esperado
 
-Cada registro deve aparecer apenas uma vez no historico.
+Cada registro deve aparecer apenas uma vez no histórico.
 
 #### Resultado Atual
 
@@ -1531,23 +1531,23 @@ O mesmo registro aparece duplicado na listagem.
 
 #### Impacto
 
-Confunde o usuario e pode levar a interpretacao incorreta dos dados.
+Confunde o usuário e pode levar à interpretação incorreta dos dados.
 
 <a id="seguranca"></a>
-## Seguranca
+## Segurança
 
 <a id="bug-041"></a>
-### BUG-041: Query de login vulneravel a SQL injection
+### BUG-041: Query de login vulnerável a SQL injection
 
 **Severidade**: Critica
 **Categoria**: Seguranca
 **Status**: Aberto
 
-#### Descricao
+#### Descrição
 
-O login monta a query com interpolacao direta de `username` e `password`, permitindo SQL injection. Evidencia baseada em analise de codigo.
+O login monta a query com interpolação direta de `username` e `password`, permitindo SQL injection. Evidência baseada em análise de código.
 
-#### Evidencia de codigo
+#### Evidência de código
 
 ```js
 const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;
@@ -1562,36 +1562,36 @@ console.log("Query executada:", query);
 
 #### Passos para Reproduzir
 
-1. Revisar o codigo da rota de login
+1. Revisar o código da rota de login
 
 #### Resultado Esperado
 
-Query deve usar parametros preparados (prepared statements) ou ORM seguro.
+Query deve usar parâmetros preparados (prepared statements) ou ORM seguro.
 
 #### Resultado Atual
 
-Query e montada por concatenacao/interpolacao direta.
+Query é montada por concatenação/interpolação direta.
 
 #### Impacto
 
-Permite alterar a consulta e burlar autenticacao ou expor dados.
+Permite alterar a consulta e burlar autenticação ou expor dados.
 
-#### Sugestao de Correcao (Opcional)
+#### Sugestão de Correção (Opcional)
 
 Usar prepared statements/ORM e sanitizar entradas.
 
 <a id="bug-042"></a>
-### BUG-042: /api/user expoe email e senha
+### BUG-042: /api/user expõe email e senha
 
 **Severidade**: Alta
 **Categoria**: Seguranca
 **Status**: Aberto
 
-#### Descricao
+#### Descrição
 
-O endpoint retorna o objeto completo do usuario, incluindo `email` e `password`. Evidencia baseada em analise de codigo.
+O endpoint retorna o objeto completo do usuário, incluindo `email` e `password`. Evidência baseada em análise de código.
 
-#### Evidencia de codigo
+#### Evidência de código
 
 ```js
 app.get("/api/user", (req, res) => {
@@ -1615,36 +1615,36 @@ app.get("/api/user", (req, res) => {
 
 #### Passos para Reproduzir
 
-1. Revisar o codigo do endpoint `/api/user`
+1. Revisar o código do endpoint `/api/user`
 
 #### Resultado Esperado
 
-Resposta deve omitir campos sensiveis (ex: `password`) e minimizar dados.
+Resposta deve omitir campos sensíveis (ex: `password`) e minimizar dados.
 
 #### Resultado Atual
 
-Resposta retorna todo o objeto do usuario.
+Resposta retorna todo o objeto do usuário.
 
 #### Impacto
 
-Exposicao de credenciais e dados pessoais no response.
+Exposição de credenciais e dados pessoais no response.
 
-#### Sugestao de Correcao (Opcional)
+#### Sugestão de Correção (Opcional)
 
-Retornar apenas campos necessarios e remover `password` do payload.
+Retornar apenas campos necessários e remover `password` do payload.
 
 <a id="bug-043"></a>
-### BUG-043: Logout nao destroi sessao no servidor
+### BUG-043: Logout não destrói sessão no servidor
 
 **Severidade**: Alta
 **Categoria**: Seguranca
 **Status**: Aberto
 
-#### Descricao
+#### Descrição
 
-O logout apenas limpa `userId`, sem destruir a sessao. O cookie de sessao permanece valido. Evidencia baseada em analise de codigo.
+O logout apenas limpa `userId`, sem destruir a sessão. O cookie de sessão permanece válido. Evidência baseada em análise de código.
 
-#### Evidencia de codigo
+#### Evidência de código
 
 ```js
 app.post("/logout", (req, res) => {
@@ -1661,20 +1661,20 @@ app.post("/logout", (req, res) => {
 
 #### Passos para Reproduzir
 
-1. Revisar o codigo do endpoint de logout
+1. Revisar o código do endpoint de logout
 
 #### Resultado Esperado
 
-Sessao deve ser destruida no servidor e o cookie invalidado.
+Sessão deve ser destruída no servidor e o cookie invalidado.
 
 #### Resultado Atual
 
-Sessao permanece ativa no servidor e o cookie nao e invalidado.
+Sessão permanece ativa no servidor e o cookie não é invalidado.
 
 #### Impacto
 
-Risco de reutilizacao de sessao e acesso indevido.
+Risco de reutilização de sessão e acesso indevido.
 
-#### Sugestao de Correcao (Opcional)
+#### Sugestão de Correção (Opcional)
 
 Usar `req.session.destroy()` e limpar o cookie no response.
