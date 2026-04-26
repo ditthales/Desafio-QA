@@ -1,4 +1,30 @@
-CT-COL-001 - Submeter coleta individual com dados válidos
+# Casos de Teste - Coleta
+
+## Índice
+
+- [CT-COL-001 - Submeter coleta individual com dados válidos](#ct-col-001)
+- [CT-COL-002 - Rejeitar coleta sem ID do beneficiário](#ct-col-002)
+- [CT-COL-003 - Rejeitar coleta sem nome do beneficiário](#ct-col-003)
+- [CT-COL-004 - Rejeitar coleta sem indicadores principais](#ct-col-004)
+- [CT-COL-005 - Validar nota fora da faixa permitida](#ct-col-005)
+- [CT-COL-006 - Validar percentuais fora da faixa permitida](#ct-col-006)
+- [CT-COL-007 - Rejeitar valores negativos em indicadores](#ct-col-007)
+- [CT-COL-008 - Rejeitar valores não numéricos](#ct-col-008)
+- [CT-COL-009 - Aplicar status padrão quando não selecionado](#ct-col-009)
+- [CT-COL-010 - Pré-visualizar dados antes de submeter](#ct-col-010)
+- [CT-COL-011 - Limite de caracteres em observações](#ct-col-011)
+- [CT-COL-012 - Sanitização de campos exibidos](#ct-col-012)
+- [CT-COL-013 - Acesso à coleta sem autenticação](#ct-col-013)
+- [CT-COL-014 - Histórico filtra por usuário](#ct-col-014)
+- [CT-COL-015 - Histórico não expõe dados sensíveis](#ct-col-015)
+- [CT-COL-016 - Upload em lote sem arquivo](#ct-col-016)
+- [CT-COL-017 - Upload em lote valida tipo de arquivo](#ct-col-017)
+- [CT-COL-018 - Upload em lote processa arquivo e retorna contagem real](#ct-col-018)
+- [CT-COL-019 - Upload em lote valida duplicatas quando marcado](#ct-col-019)
+- [CT-COL-020 - Upload em lote rejeita arquivo vazio ou inválido](#ct-col-020)
+
+<a id="ct-col-001"></a>
+## CT-COL-001 - Submeter coleta individual com dados válidos
 Cenário relacionado: SCN-COLETA-001
 Pré-condição:
 - Usuário autenticado como "admin"
@@ -15,7 +41,8 @@ Resultado Esperado:
 - Coleta aceita com sucesso
 - Formulário limpo após envio
 
-CT-COL-002 - Rejeitar coleta sem ID do beneficiário
+<a id="ct-col-002"></a>
+## CT-COL-002 - Rejeitar coleta sem ID do beneficiário
 Cenário relacionado: SCN-COLETA-002
 Pré-condição:
 - Usuário autenticado
@@ -30,7 +57,8 @@ Resultado Esperado:
 - Coleta rejeitada
 - Mensagem de erro exibida para ID obrigatório
 
-CT-COL-003 - Rejeitar coleta sem nome do beneficiário
+<a id="ct-col-003"></a>
+## CT-COL-003 - Rejeitar coleta sem nome do beneficiário
 Cenário relacionado: SCN-COLETA-002
 Pré-condição:
 - Usuário autenticado
@@ -45,7 +73,8 @@ Resultado Esperado:
 - Coleta rejeitada
 - Mensagem de erro exibida para nome obrigatório
 
-CT-COL-004 - Rejeitar coleta sem indicadores principais
+<a id="ct-col-004"></a>
+## CT-COL-004 - Rejeitar coleta sem indicadores principais
 Cenário relacionado: SCN-COLETA-002
 Pré-condição:
 - Usuário autenticado
@@ -58,7 +87,8 @@ Resultado Esperado:
 - Coleta rejeitada
 - Mensagem de erro exibida para indicadores obrigatórios
 
-CT-COL-005 - Validar nota fora da faixa permitida
+<a id="ct-col-005"></a>
+## CT-COL-005 - Validar nota fora da faixa permitida
 Cenário relacionado: SCN-COLETA-003
 Pré-condição:
 - Usuário autenticado
@@ -73,7 +103,8 @@ Resultado Esperado:
 - Coleta rejeitada
 - Mensagem de erro para faixa inválida de nota
 
-CT-COL-006 - Validar percentuais fora da faixa permitida
+<a id="ct-col-006"></a>
+## CT-COL-006 - Validar percentuais fora da faixa permitida
 Cenário relacionado: SCN-COLETA-003
 Pré-condição:
 - Usuário autenticado
@@ -88,7 +119,8 @@ Resultado Esperado:
 - Coleta rejeitada
 - Mensagem de erro para faixa inválida de percentuais
 
-CT-COL-007 - Rejeitar valores negativos em indicadores
+<a id="ct-col-007"></a>
+## CT-COL-007 - Rejeitar valores negativos em indicadores
 Cenário relacionado: SCN-COLETA-003
 Pré-condição:
 - Usuário autenticado
@@ -103,7 +135,8 @@ Resultado Esperado:
 - Coleta rejeitada
 - Mensagem de erro para valores negativos
 
-CT-COL-008 - Rejeitar valores não numéricos
+<a id="ct-col-008"></a>
+## CT-COL-008 - Rejeitar valores não numéricos
 Cenário relacionado: SCN-COLETA-003
 Pré-condição:
 - Usuário autenticado
@@ -118,7 +151,8 @@ Resultado Esperado:
 - Coleta rejeitada
 - Mensagem de erro para valores não numéricos
 
-CT-COL-009 - Aplicar status padrão quando não selecionado
+<a id="ct-col-009"></a>
+## CT-COL-009 - Aplicar status padrão quando não selecionado
 Cenário relacionado: SCN-COLETA-004
 Pré-condição:
 - Usuário autenticado
@@ -130,7 +164,8 @@ Resultado Esperado:
 - Coleta aceita
 - Status padrão aplicado (conforme regra do sistema)
 
-CT-COL-010 - Pré-visualizar dados antes de submeter
+<a id="ct-col-010"></a>
+## CT-COL-010 - Pré-visualizar dados antes de submeter
 Cenário relacionado: SCN-COLETA-005
 Pré-condição:
 - Usuário autenticado
@@ -145,7 +180,8 @@ Resultado Esperado:
 - Dados exibidos em formato JSON
 - Usuário pode submeter a coleta após a pré-visualização
 
-CT-COL-011 - Limite de caracteres em observações
+<a id="ct-col-011"></a>
+## CT-COL-011 - Limite de caracteres em observações
 Cenário relacionado: SCN-COLETA-006
 Pré-condição:
 - Usuário autenticado
@@ -156,7 +192,8 @@ Passos:
 Resultado Esperado:
 - Coleta rejeitada ou observação truncada conforme limite definido
 
-CT-COL-012 - Sanitização de campos exibidos
+<a id="ct-col-012"></a>
+## CT-COL-012 - Sanitização de campos exibidos
 Cenário relacionado: SCN-COLETA-006
 Pré-condição:
 - Usuário autenticado
@@ -168,7 +205,8 @@ Resultado Esperado:
 - Conteúdo exibido como texto simples
 - Nenhuma execução de HTML/JS
 
-CT-COL-013 - Acesso à coleta sem autenticação
+<a id="ct-col-013"></a>
+## CT-COL-013 - Acesso à coleta sem autenticação
 Cenário relacionado: SCN-COLETA-007
 Pré-condição:
 - Usuário não autenticado
@@ -177,7 +215,8 @@ Passos:
 Resultado Esperado:
 - Redirecionamento para a página de login
 
-CT-COL-014 - Histórico filtra por usuário
+<a id="ct-col-014"></a>
+## CT-COL-014 - Histórico filtra por usuário
 Cenário relacionado: SCN-COLETA-008
 Pré-condição:
 - Usuário 1 e Usuário 2 possuem coletas registradas
@@ -187,7 +226,8 @@ Passos:
 Resultado Esperado:
 - Histórico mostra apenas coletas do Usuário 1
 
-CT-COL-015 - Histórico não expõe dados sensíveis
+<a id="ct-col-015"></a>
+## CT-COL-015 - Histórico não expõe dados sensíveis
 Cenário relacionado: SCN-COLETA-008
 Pré-condição:
 - Usuário autenticado
@@ -197,7 +237,8 @@ Resultado Esperado:
 - Não exibir dados de outros usuários
 - Não exibir identificadores sensíveis
 
-CT-COL-016 - Upload em lote sem arquivo
+<a id="ct-col-016"></a>
+## CT-COL-016 - Upload em lote sem arquivo
 Cenário relacionado: SCN-COLETA-009
 Pré-condição:
 - Usuário autenticado
@@ -209,7 +250,8 @@ Resultado Esperado:
 - Mensagem de erro exibida
 - Nenhum processamento iniciado
 
-CT-COL-017 - Upload em lote valida tipo de arquivo
+<a id="ct-col-017"></a>
+## CT-COL-017 - Upload em lote valida tipo de arquivo
 Cenário relacionado: SCN-COLETA-009
 Pré-condição:
 - Usuário autenticado
@@ -219,7 +261,8 @@ Passos:
 Resultado Esperado:
 - Upload rejeitado com mensagem de validação
 
-CT-COL-018 - Upload em lote processa arquivo e retorna contagem real
+<a id="ct-col-018"></a>
+## CT-COL-018 - Upload em lote processa arquivo e retorna contagem real
 Cenário relacionado: SCN-COLETA-009
 Pré-condição:
 - Usuário autenticado
@@ -230,7 +273,8 @@ Resultado Esperado:
 - Arquivo processado
 - Resposta com contagem real de inserções e erros
 
-CT-COL-019 - Upload em lote valida duplicatas quando marcado
+<a id="ct-col-019"></a>
+## CT-COL-019 - Upload em lote valida duplicatas quando marcado
 Cenário relacionado: SCN-COLETA-009
 Pré-condição:
 - Usuário autenticado
@@ -241,7 +285,8 @@ Passos:
 Resultado Esperado:
 - Duplicatas reportadas e não inseridas
 
-CT-COL-020 - Upload em lote rejeita arquivo vazio ou inválido
+<a id="ct-col-020"></a>
+## CT-COL-020 - Upload em lote rejeita arquivo vazio ou inválido
 Cenário relacionado: SCN-COLETA-009
 Pré-condição:
 - Usuário autenticado
