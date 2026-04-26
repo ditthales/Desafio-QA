@@ -48,75 +48,75 @@ describe("Login Tests", () => {
     LoginPage.visit();
   });
 
-  it("CT-001 | Deve fazer login com credenciais válidas", () => {
+  it("CT-LOG-001 | Deve fazer login com credenciais válidas", () => {
     LoginPage.login("admin", "admin123");
     LoginPage.expectMessageContains("Login realizado com sucesso!");
     LoginPage.expectOnDashboard();
   });
 
-  it("CT-002 | Deve rejeitar login com senha inválida", () => {
+  it("CT-LOG-002 | Deve rejeitar login com senha inválida", () => {
     LoginPage.login("admin", "senhaerrada");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-003 | Deve rejeitar login com usuario inexistente", () => {
+  it("CT-LOG-003 | Deve rejeitar login com usuario inexistente", () => {
     LoginPage.login("ghost", "qualquer123");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-004 | Deve rejeitar login com usuario e senha inexistentes", () => {
+  it("CT-LOG-004 | Deve rejeitar login com usuario e senha inexistentes", () => {
     LoginPage.login("naoexiste", "semSenha123");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-005 | Deve validar campos vazios", () => {
+  it("CT-LOG-005 | Deve validar campos vazios", () => {
     LoginPage.clickLoginButton();
     LoginPage.expectMessageContains("Por favor, preencha todos os campos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-006 | Deve validar usuario vazio", () => {
+  it("CT-LOG-006 | Deve validar usuario vazio", () => {
     LoginPage.enterPassword("admin123");
     LoginPage.clickLoginButton();
     LoginPage.expectMessageContains("Por favor, preencha todos os campos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-007 | Deve validar senha vazia", () => {
+  it("CT-LOG-007 | Deve validar senha vazia", () => {
     LoginPage.enterUsername("admin");
     LoginPage.clickLoginButton();
     LoginPage.expectMessageContains("Por favor, preencha todos os campos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-008 | Deve rejeitar login com espacos em branco", () => {
+  it("CT-LOG-008 | Deve rejeitar login com espacos em branco", () => {
     LoginPage.login("  admin  ", "  admin123  ");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-009 | Deve rejeitar login com campos apenas espacos", () => {
+  it("CT-LOG-009 | Deve rejeitar login com campos apenas espacos", () => {
     LoginPage.login("   ", "   ");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-010 | Deve rejeitar login com caracteres especiais no usuario", () => {
+  it("CT-LOG-010 | Deve rejeitar login com caracteres especiais no usuario", () => {
     LoginPage.login("adm!n@#", "admin123");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-011 | Deve rejeitar login com caracteres especiais na senha", () => {
+  it("CT-LOG-011 | Deve rejeitar login com caracteres especiais na senha", () => {
     LoginPage.login("admin", "adm!n@#");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-013 | Deve bloquear apos multiplas tentativas falhadas", () => {
+  it("CT-LOG-013 | Deve bloquear apos multiplas tentativas falhadas", () => {
     for (let attempt = 0; attempt < 5; attempt += 1) {
       LoginPage.login("admin", "senhaerrada");
     }
@@ -124,7 +124,7 @@ describe("Login Tests", () => {
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-014 | Deve manter sessao apos login", () => {
+  it("CT-LOG-014 | Deve manter sessao apos login", () => {
     LoginPage.login("admin", "admin123");
     LoginPage.expectOnDashboard();
     cy.reload();
@@ -136,18 +136,18 @@ describe("Login Tests", () => {
     });
   });
 
-  it("CT-015 | Deve rejeitar tentativa de SQL Injection", () => {
+  it("CT-LOG-015 | Deve rejeitar tentativa de SQL Injection", () => {
     LoginPage.login("admin' OR '1'='1", "qualquer123");
     LoginPage.expectMessageContains("Usuário ou senha incorretos");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-016 | Deve impedir bypass via query", () => {
+  it("CT-LOG-016 | Deve impedir bypass via query", () => {
     cy.visit("/dashboard?admin=true");
     LoginPage.expectNotOnDashboard();
   });
 
-  it("CT-017 | Deve validar health check do endpoint de login", () => {
+  it("CT-LOG-017 | Deve validar health check do endpoint de login", () => {
     cy.request({
       method: "POST",
       url: "/login",
@@ -159,7 +159,7 @@ describe("Login Tests", () => {
     });
   });
 
-  it("CT-018 | Deve validar Barra de Governo e contraste", () => {
+  it("CT-LOG-018 | Deve validar Barra de Governo e contraste", () => {
     LoginPage.expectGovBarVisible();
     LoginPage.getGovBar().then(($bar) => {
       const textColor = $bar.css("color");

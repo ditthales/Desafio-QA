@@ -1,4 +1,4 @@
-CT-001 - Login com sucesso
+CT-LOG-001 - Login com sucesso
 Cenário relacionado: SCN-LOGIN-001
 Pre-condição:
 - Usuario cadastrado: username "admin", senha "admin123"
@@ -12,7 +12,7 @@ Resultado Esperado:
 - Redirecionamento para "/dashboard"
 - Informacoes do perfil exibidas (username "admin" e email "admin@test.com")
 
-CT-002 - Login com credenciais invalidas
+CT-LOG-002 - Login com credenciais invalidas
 Cenário relacionado: SCN-LOGIN-002
 Pre-condição:
 - Usuario cadastrado: username "admin", senha "admin123"
@@ -26,7 +26,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-003 - Login com usuario inexistente
+CT-LOG-003 - Login com usuario inexistente
 Cenário relacionado: SCN-LOGIN-002
 Pre-condição:
 - Usuario "ghost" nao esta cadastrado
@@ -40,7 +40,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-004 - Login com usuario e senha inexistentes
+CT-LOG-004 - Login com usuario e senha inexistentes
 Cenário relacionado: SCN-LOGIN-002
 Pre-condição:
 - Usuario "naoexiste" nao esta cadastrado
@@ -54,7 +54,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-005 - Login com campos vazios
+CT-LOG-005 - Login com campos vazios
 Cenário relacionado: SCN-LOGIN-003
 Pre-condição:
 - Usuario esta na pagina de login ("/")
@@ -67,7 +67,7 @@ Resultado Esperado:
 - Requisicao de login nao enviada
 - Permanecer na pagina de login
 
-CT-006 - Login com usuario vazio e senha preenchida
+CT-LOG-006 - Login com usuario vazio e senha preenchida
 Cenário relacionado: SCN-LOGIN-003
 Pre-condição:
 - Usuario esta na pagina de login ("/")
@@ -80,7 +80,7 @@ Resultado Esperado:
 - Requisicao de login nao enviada
 - Permanecer na pagina de login
 
-CT-007 - Login com senha vazia e usuario preenchido
+CT-LOG-007 - Login com senha vazia e usuario preenchido
 Cenário relacionado: SCN-LOGIN-003
 Pre-condição:
 - Usuario esta na pagina de login ("/")
@@ -93,7 +93,7 @@ Resultado Esperado:
 - Requisicao de login nao enviada
 - Permanecer na pagina de login
 
-CT-008 - Login com usuario e senha contendo espacos em branco
+CT-LOG-008 - Login com usuario e senha contendo espacos em branco
 Cenário relacionado: SCN-LOGIN-004
 Pre-condição:
 - Usuario esta na pagina de login ("/")
@@ -106,7 +106,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-009 - Login com usuario e senha apenas com espacos
+CT-LOG-009 - Login com usuario e senha apenas com espacos
 Cenário relacionado: SCN-LOGIN-004
 Pre-condição:
 - Usuario esta na pagina de login ("/")
@@ -119,7 +119,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-010 - Login com caracteres especiais no usuario
+CT-LOG-010 - Login com caracteres especiais no usuario
 Cenário relacionado: SCN-LOGIN-005
 Pre-condição:
 - Usuario esta na pagina de login ("/")
@@ -132,7 +132,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-011 - Login com caracteres especiais na senha
+CT-LOG-011 - Login com caracteres especiais na senha
 Cenário relacionado: SCN-LOGIN-005
 Pre-condição:
 - Usuario cadastrado: username "admin", senha "admin123"
@@ -146,7 +146,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-013 - Bloqueio apos multiplas tentativas falhadas
+CT-LOG-013 - Bloqueio apos multiplas tentativas falhadas
 Cenário relacionado: SCN-LOGIN-006
 Pre-condição:
 - Usuario cadastrado: username "admin", senha "admin123"
@@ -158,7 +158,7 @@ Resultado Esperado:
 - Usuario nao autenticado
 - Novas tentativas devem ser bloqueadas temporariamente
 
-CT-014 - Sessao criada e mantida apos login
+CT-LOG-014 - Sessao criada e mantida apos login
 Cenário relacionado: SCN-LOGIN-007
 Pre-condição:
 - Usuario cadastrado: username "admin", senha "admin123"
@@ -173,7 +173,7 @@ Resultado Esperado:
 - A pagina continua em "/dashboard" sem solicitar novo login
 - localStorage contem "loggedIn" = "true" e "user" com username "admin"
 
-CT-015 - Tentativa de SQL Injection no login
+CT-LOG-015 - Tentativa de SQL Injection no login
 Cenário relacionado: SCN-LOGIN-008
 Pre-condição:
 - Usuario esta na pagina de login ("/")
@@ -186,7 +186,7 @@ Resultado Esperado:
 - Nenhum acesso nao autorizado concedido
 - Permanecer na pagina de login, sem redirecionamento para "/dashboard"
 
-CT-016 - Bypass de autenticacao via query
+CT-LOG-016 - Bypass de autenticacao via query
 Cenário relacionado: SCN-LOGIN-009
 Pre-condição:
 - Usuario nao esta autenticado
@@ -196,7 +196,7 @@ Resultado Esperado:
 - Redirecionamento para a pagina de login ("/")
 - Dashboard nao deve ser exibido
 
-CT-017 - Health check do endpoint de login
+CT-LOG-017 - Health check do endpoint de login
 Cenário relacionado: SCN-LOGIN-010
 Pre-condição:
 - Servico em execucao
@@ -206,7 +206,7 @@ Resultado Esperado:
 - Resposta com status 400
 - Mensagem de erro: "Usuário e senha são obrigatórios"
 
-CT-018 - Acessibilidade: Barra de Governo e contraste
+CT-LOG-018 - Acessibilidade: Barra de Governo e contraste
 Cenário relacionado: SCN-LOGIN-011
 Pre-condição:
 - Usuario esta na pagina de login ("/")
