@@ -46,12 +46,18 @@
 	- [BUG-037: ID aceita qualquer caractere](#bug-037)
 	- [BUG-038: Nome aceita números e caracteres especiais](#bug-038)
 	- [BUG-039: Sem retorno para o dashboard a partir da coleta](#bug-039)
+	- [BUG-040: Campos sem limite de caracteres](#bug-040)
+	- [BUG-041: Campos sem sanitização](#bug-041)
+- [Coleta em lote](#coleta-em-lote)
+	- [BUG-043: Lote não processa arquivo e retorna sucesso aleatório](#bug-043)
 - [Histórico](#historico)
-	- [BUG-040: Histórico mostra registros duplicados](#bug-040)
+	- [BUG-044: Histórico mostra registros duplicados](#bug-044)
+	- [BUG-045: Histórico mostra dados de todos os usuários](#bug-045)
+	- [BUG-046: Histórico expõe ID de outros usuários](#bug-046)
 - [Segurança](#seguranca)
-	- [BUG-041: Query de login vulnerável a SQL injection](#bug-041)
-	- [BUG-042: /api/user expõe email e senha](#bug-042)
-	- [BUG-043: Logout não destrói sessão no servidor](#bug-043)
+	- [BUG-047: Query de login vulnerável a SQL injection](#bug-047)
+	- [BUG-048: /api/user expõe email e senha](#bug-048)
+	- [BUG-049: Logout não destrói sessão no servidor](#bug-049)
 
 <a id="registro"></a>
 ## Registro
@@ -1494,11 +1500,121 @@ Não há opção visível para voltar ao dashboard.
 
 Navegação confusa e retenção indevida na tela.
 
+<a id="bug-040"></a>
+### BUG-040: Campos sem limite de caracteres
+
+**Severidade**: Média
+**Categoria**: UX/UI
+**Status**: Aberto
+
+#### Descrição
+
+Nenhum campo possui limite de caracteres, permitindo entradas excessivamente longas.
+
+#### Ambiente
+
+- **Navegador**: Chrome 146.0.7680.155
+- **Sistema Operacional**: Macbook Pro M1
+- **Data do Teste**: 25/04/2026
+
+#### Passos para Reproduzir
+
+1. Acessar a página de coleta individual
+2. Preencher os campos com textos muito longos (ex: 5.000+ caracteres)
+3. Enviar a coleta
+
+#### Resultado Esperado
+
+Campos devem limitar tamanho e bloquear entradas acima do máximo permitido.
+
+#### Resultado Atual
+
+Campos aceitam qualquer quantidade de caracteres.
+
+#### Impacto
+
+Risco de inconsistência nos dados e degradação de performance.
+
+<a id="bug-041"></a>
+### BUG-041: Campos sem sanitização
+
+**Severidade**: Alta
+**Categoria**: Segurança
+**Status**: Aberto
+
+#### Descrição
+
+Os campos não passam por sanitização, permitindo entrada de conteúdo potencialmente malicioso.
+
+#### Ambiente
+
+- **Navegador**: Chrome 146.0.7680.155
+- **Sistema Operacional**: Macbook Pro M1
+- **Data do Teste**: 25/04/2026
+
+#### Passos para Reproduzir
+
+1. Acessar a página de coleta individual
+2. Informar texto com HTML/JS nos campos (ex: observações)
+3. Enviar a coleta
+4. Verificar a exibição do conteúdo no histórico
+
+#### Resultado Esperado
+
+Conteúdo deve ser sanitizado e exibido como texto simples.
+
+#### Resultado Atual
+
+Campos aceitam conteúdo sem sanitização.
+
+#### Impacto
+
+Risco de XSS e exposição de usuários.
+
+<a id="coleta-em-lote"></a>
+## Coleta em lote
+
+<a id="bug-043"></a>
+### BUG-043: Lote não processa arquivo e retorna sucesso aleatório
+
+**Severidade**: Alta
+**Categoria**: Lógica
+**Status**: Aberto
+
+#### Descrição
+
+O upload em lote não processa o arquivo enviado. O sistema sempre retorna sucesso e uma quantidade aleatória de registros inseridos.
+
+#### Ambiente
+
+- **Navegador**: Chrome 146.0.7680.155
+- **Sistema Operacional**: Macbook Pro M1
+- **Data do Teste**: 25/04/2026
+
+#### Passos para Reproduzir
+
+1. Acessar a aba de coleta em lote
+2. Enviar um arquivo CSV válido
+3. Enviar um arquivo CSV vazio ou inválido
+4. Comparar as respostas
+
+#### Resultado Esperado
+
+Sistema deve processar o arquivo, validar dados e retornar contagem real de inserções/erros.
+
+#### Resultado Atual
+
+Sistema retorna sucesso e número aleatório de inserções, independente do arquivo.
+
+#### Impacto
+
+Falsa percepção de processamento e risco de perda de dados.
+
 <a id="historico"></a>
 ## Histórico
 
-<a id="bug-040"></a>
-### BUG-040: Histórico mostra registros duplicados
+<a id="bug-044"></a>
+### BUG-044: Histórico mostra registros duplicados
 
 **Severidade**: Média
 **Categoria**: Lógica
@@ -1533,11 +1649,81 @@ O mesmo registro aparece duplicado na listagem.
 
 Confunde o usuário e pode levar à interpretação incorreta dos dados.
 
+<a id="bug-045"></a>
+### BUG-045: Histórico mostra dados de todos os usuários
+
+**Severidade**: Alta
+**Categoria**: Segurança
+**Status**: Aberto
+
+#### Descrição
+
+O histórico lista coletas de todos os usuários, sem filtrar por sessão.
+
+#### Ambiente
+
+- **Navegador**: Chrome 146.0.7680.155
+- **Sistema Operacional**: Macbook Pro M1
+- **Data do Teste**: 25/04/2026
+
+#### Passos para Reproduzir
+
+1. Fazer login com um usuário comum
+2. Acessar o histórico
+3. Observar registros que não pertencem ao usuário logado
+
+#### Resultado Esperado
+
+Histórico deve listar apenas coletas do usuário autenticado.
+
+#### Resultado Atual
+
+Histórico exibe coletas de outros usuários.
+
+#### Impacto
+
+Exposição indevida de dados de terceiros.
+
+<a id="bug-046"></a>
+### BUG-046: Histórico expõe ID de outros usuários
+
+**Severidade**: Alta
+**Categoria**: Segurança
+**Status**: Aberto
+
+#### Descrição
+
+A listagem do histórico exibe o ID de beneficiários relacionados a outros usuários.
+
+#### Ambiente
+
+- **Navegador**: Chrome 146.0.7680.155
+- **Sistema Operacional**: Macbook Pro M1
+- **Data do Teste**: 25/04/2026
+
+#### Passos para Reproduzir
+
+1. Fazer login com um usuário comum
+2. Acessar o histórico
+3. Verificar IDs de beneficiários que não pertencem ao usuário logado
+
+#### Resultado Esperado
+
+IDs de beneficiários devem ser visíveis apenas para o usuário dono da coleta.
+
+#### Resultado Atual
+
+IDs de beneficiários de outros usuários são exibidos.
+
+#### Impacto
+
+Vazamento de dados sensíveis.
+
 <a id="seguranca"></a>
 ## Segurança
 
-<a id="bug-041"></a>
-### BUG-041: Query de login vulnerável a SQL injection
+<a id="bug-047"></a>
+### BUG-047: Query de login vulnerável a SQL injection
 
 **Severidade**: Critica
 **Categoria**: Seguranca
@@ -1580,8 +1766,8 @@ Permite alterar a consulta e burlar autenticação ou expor dados.
 
 Usar prepared statements/ORM e sanitizar entradas.
 
-<a id="bug-042"></a>
-### BUG-042: /api/user expõe email e senha
+<a id="bug-048"></a>
+### BUG-048: /api/user expõe email e senha
 
 **Severidade**: Alta
 **Categoria**: Seguranca
@@ -1633,8 +1819,8 @@ Exposição de credenciais e dados pessoais no response.
 
 Retornar apenas campos necessários e remover `password` do payload.
 
-<a id="bug-043"></a>
-### BUG-043: Logout não destrói sessão no servidor
+<a id="bug-049"></a>
+### BUG-049: Logout não destrói sessão no servidor
 
 **Severidade**: Alta
 **Categoria**: Seguranca
