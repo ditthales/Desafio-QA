@@ -13,6 +13,8 @@ Esta entrega faz parte do processo seletivo para a vaga de QA no V-Lab UFPE.
 	- [test-cases/coleta-test-cases.md](test-cases/coleta-test-cases.md)
 - Automação E2E do fluxo de login com validações de sucesso e erro:
 	- [cypress/e2e/login.cy.js](cypress/e2e/login.cy.js)
+- Checklist de regressão para pontos críticos:
+	- [CHECKLIST_REGRESSAO.md](CHECKLIST_REGRESSAO.md)
 
 ## Como rodar o projeto com Docker
 
