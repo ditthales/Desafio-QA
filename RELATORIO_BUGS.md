@@ -43,13 +43,14 @@
 	- [BUG-034: Nota e campos numéricos aceitam valores negativos](#bug-034)
 	- [BUG-035: Permite enviar sem status](#bug-035)
 	- [BUG-036: Nota e campos numéricos aceitam potência](#bug-036)
-	- [BUG-037: ID aceita qualquer caractere](#bug-037)
-	- [BUG-038: Nome aceita números e caracteres especiais](#bug-038)
-	- [BUG-039: Sem retorno para o dashboard a partir da coleta](#bug-039)
-	- [BUG-040: Campos sem limite de caracteres](#bug-040)
-	- [BUG-041: Campos sem sanitização](#bug-041)
+	- [BUG-037: Nome aceita números e caracteres especiais](#bug-037)
+	- [BUG-038: Sem retorno para o dashboard a partir da coleta](#bug-038)
+	- [BUG-039: Campos sem limite de caracteres](#bug-039)
+	- [BUG-040: Campos sem sanitização](#bug-040)
 - [Coleta em lote](#coleta-em-lote)
-	- [BUG-043: Lote não processa arquivo e retorna sucesso aleatório](#bug-043)
+	- [BUG-041: Validação de duplicatas não funciona no lote](#bug-041)
+	- [BUG-042: Lote não processa arquivo e retorna sucesso aleatório](#bug-042)
+	- [BUG-043: Lote não valida arquivo vazio ou fora do padrão](#bug-043)
 - [Histórico](#historico)
 	- [BUG-044: Histórico mostra registros duplicados](#bug-044)
 	- [BUG-045: Histórico mostra dados de todos os usuários](#bug-045)
@@ -1395,43 +1396,7 @@ Valores em notação científica são aceitos.
 Dados inconsistentes podem ser gravados com risco de estouro de memória em caso de registro de números muito grandes (facilitado pela potência).
 
 <a id="bug-037"></a>
-### BUG-037: ID aceita qualquer caractere
-
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
-
-#### Descrição
-
-O campo de ID aceita caracteres não numéricos.
-
-#### Ambiente
-
-- **Navegador**: Chrome 146.0.7680.155
-- **Sistema Operacional**: Macbook Pro M1
-- **Data do Teste**: 25/04/2026
-
-#### Passos para Reproduzir
-
-1. Acessar a página de coleta individual
-2. Informar ID "ABC-123"
-3. Preencher os demais campos obrigatórios
-4. Enviar a coleta
-
-#### Resultado Esperado
-
-Sistema deve aceitar apenas caracteres numéricos no ID.
-
-#### Resultado Atual
-
-ID com caracteres é aceito.
-
-#### Impacto
-
-Inconsistência de identificação de beneficiários.
-
-<a id="bug-038"></a>
-### BUG-038: Nome aceita números e caracteres especiais
+### BUG-037: Nome aceita números e caracteres especiais
 
 **Severidade**: Baixa
 **Categoria**: UX/UI
@@ -1466,8 +1431,8 @@ Nome com números e caracteres especiais é aceito.
 
 Dados de beneficiário inconsistentes.
 
-<a id="bug-039"></a>
-### BUG-039: Sem retorno para o dashboard a partir da coleta
+<a id="bug-038"></a>
+### BUG-038: Sem retorno para o dashboard a partir da coleta
 
 **Severidade**: Baixa
 **Categoria**: UX/UI
@@ -1500,8 +1465,8 @@ Não há opção visível para voltar ao dashboard.
 
 Navegação confusa e retenção indevida na tela.
 
-<a id="bug-040"></a>
-### BUG-040: Campos sem limite de caracteres
+<a id="bug-039"></a>
+### BUG-039: Campos sem limite de caracteres
 
 **Severidade**: Média
 **Categoria**: UX/UI
@@ -1535,8 +1500,8 @@ Campos aceitam qualquer quantidade de caracteres.
 
 Risco de inconsistência nos dados e degradação de performance.
 
-<a id="bug-041"></a>
-### BUG-041: Campos sem sanitização
+<a id="bug-040"></a>
+### BUG-040: Campos sem sanitização
 
 **Severidade**: Alta
 **Categoria**: Segurança
@@ -1574,8 +1539,43 @@ Risco de XSS e exposição de usuários.
 <a id="coleta-em-lote"></a>
 ## Coleta em lote
 
-<a id="bug-043"></a>
-### BUG-043: Lote não processa arquivo e retorna sucesso aleatório
+<a id="bug-041"></a>
+### BUG-041: Validação de duplicatas não funciona no lote
+
+**Severidade**: Alta
+**Categoria**: Lógica
+**Status**: Aberto
+
+#### Descrição
+
+Mesmo com a opção de validar duplicatas, o sistema não identifica registros repetidos no CSV.
+
+#### Ambiente
+
+- **Navegador**: Chrome 146.0.7680.155
+- **Sistema Operacional**: Macbook Pro M1
+- **Data do Teste**: 25/04/2026
+
+#### Passos para Reproduzir
+
+1. Acessar a aba de coleta em lote
+2. Marcar a opção "Validar duplicatas"
+3. Enviar um CSV com linhas duplicadas
+
+#### Resultado Esperado
+
+Sistema deve reportar duplicatas e impedir a inserção dos registros repetidos.
+
+#### Resultado Atual
+
+Duplicatas não são reportadas e o processamento segue normalmente.
+
+#### Impacto
+
+Dados inconsistentes e duplicados no sistema.
+
+<a id="bug-042"></a>
+### BUG-042: Lote não processa arquivo e retorna sucesso aleatório
 
 **Severidade**: Alta
 **Categoria**: Lógica
@@ -1609,6 +1609,41 @@ Sistema retorna sucesso e número aleatório de inserções, independente do arq
 #### Impacto
 
 Falsa percepção de processamento e risco de perda de dados.
+
+<a id="bug-043"></a>
+### BUG-043: Lote não valida arquivo vazio ou fora do padrão
+
+**Severidade**: Alta
+**Categoria**: Lógica
+**Status**: Aberto
+
+#### Descrição
+
+O sistema aceita CSV vazio ou fora do padrão esperado sem retornar erro.
+
+#### Ambiente
+
+- **Navegador**: Chrome 146.0.7680.155
+- **Sistema Operacional**: Macbook Pro M1
+- **Data do Teste**: 25/04/2026
+
+#### Passos para Reproduzir
+
+1. Acessar a aba de coleta em lote
+2. Enviar um CSV vazio
+3. Enviar um CSV com colunas fora do padrão esperado
+
+#### Resultado Esperado
+
+Sistema deve rejeitar o arquivo e informar os erros encontrados.
+
+#### Resultado Atual
+
+Upload é aceito sem validação e sem erro.
+
+#### Impacto
+
+Dados inválidos podem ser processados sem detecção.
 
 <a id="historico"></a>
 ## Histórico
