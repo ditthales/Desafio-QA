@@ -192,33 +192,4 @@ describe("Login Tests", () => {
       expect(ratio, "contraste minimo").to.be.at.least(4.5);
     });
   });
-
-  // it("Deve rejeitar login com usuário inexistente", () => {
-  //   LoginPage.login("nonexistent", "password");
-  //   cy.get('[data-testid="message"]').should("be.visible");
-  // });
-
-  // it("Deve exigir username para login", () => {
-  //   LoginPage.enterPassword("password");
-  //   LoginPage.clickLoginButton();
-  //   // Verificar validação de formulário
-  //   cy.get('[data-testid="login-username"]').should("have.attr", "required");
-  // });
-
-  // it("Deve exigir password para login", () => {
-  //   LoginPage.enterUsername("admin");
-  //   LoginPage.clickLoginButton();
-  //   // Verificar validação de formulário
-  //   cy.get('[data-testid="login-password"]').should("have.attr", "required");
-  // });
-
-  // it("Não deve permitir injeção SQL no campo username", () => {
-  //   LoginPage.login("admin' OR '1'='1", "any");
-  //   cy.get('[data-testid="message"]').should("be.visible");
-  // });
-
-  // it("Não deve permitir login com espaços em branco", () => {
-  //   LoginPage.login("   ", "   ");
-  //   cy.get('[data-testid="message"]').should("be.visible");
-  // });
 });
