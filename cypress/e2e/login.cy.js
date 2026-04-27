@@ -1,5 +1,7 @@
 import LoginPage from "./pages/LoginPage";
 
+let loginData;
+
 const parseRgb = (color) => {
   const match = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
   if (!match) {
@@ -44,6 +46,12 @@ const contrastRatio = (colorA, colorB) => {
 };
 
 describe("Login Tests", () => {
+  before(() => {
+    cy.fixture("login").then((data) => {
+      loginData = data;
+    });
+  });
+
   beforeEach(() => {
     LoginPage.visit();
   });
@@ -56,101 +64,116 @@ describe("Login Tests", () => {
       body: {},
     }).then((response) => {
       expect(response.status).to.equal(400);
-      expect(response.body.message).to.equal("Usuário e senha são obrigatórios");
+      expect(response.body.message).to.equal(loginData.messages.healthRequired);
     });
   });
 
   it("CT-LOG-002 | Deve fazer login com credenciais válidas", () => {
-    LoginPage.login("admin", "admin123");
-    LoginPage.expectMessageContains("Login realizado com sucesso!");
+    LoginPage.login(loginData.users.admin.username, loginData.users.admin.password);
+    LoginPage.expectMessageContains(loginData.messages.success);
     LoginPage.expectOnDashboard();
   });
 
   it("CT-LOG-003 | Deve rejeitar login com senha inválida", () => {
-    LoginPage.login("admin", "senhaerrada");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(
+      loginData.users.admin.username,
+      loginData.invalid.wrongPassword,
+    );
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-004 | Deve rejeitar login com usuario inexistente", () => {
-    LoginPage.login("ghost", "qualquer123");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(loginData.invalid.ghostUser, loginData.invalid.anyPassword);
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-005 | Deve rejeitar login com usuario e senha inexistentes", () => {
-    LoginPage.login("naoexiste", "semSenha123");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(
+      loginData.invalid.nonexistentUser,
+      loginData.invalid.nonexistentPassword,
+    );
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-006 | Deve validar campos vazios", () => {
     LoginPage.clickLoginButton();
-    LoginPage.expectMessageContains("Por favor, preencha todos os campos");
+    LoginPage.expectMessageContains(loginData.messages.emptyFields);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-007 | Deve validar usuario vazio", () => {
-    LoginPage.enterPassword("admin123");
+    LoginPage.enterPassword(loginData.users.admin.password);
     LoginPage.clickLoginButton();
-    LoginPage.expectMessageContains("Por favor, preencha todos os campos");
+    LoginPage.expectMessageContains(loginData.messages.emptyFields);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-008 | Deve validar senha vazia", () => {
-    LoginPage.enterUsername("admin");
+    LoginPage.enterUsername(loginData.users.admin.username);
     LoginPage.clickLoginButton();
-    LoginPage.expectMessageContains("Por favor, preencha todos os campos");
+    LoginPage.expectMessageContains(loginData.messages.emptyFields);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-009 | Deve rejeitar login com espacos em branco", () => {
-    LoginPage.login("  admin  ", "  admin123  ");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(loginData.invalid.paddedUser, loginData.invalid.paddedPassword);
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-010 | Deve rejeitar login com campos apenas espacos", () => {
-    LoginPage.login("   ", "   ");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(loginData.invalid.spaces, loginData.invalid.spaces);
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-011 | Deve rejeitar login com caracteres especiais no usuario", () => {
-    LoginPage.login("adm!n@#", "admin123");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(loginData.invalid.specialUser, loginData.users.admin.password);
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-012 | Deve rejeitar login com caracteres especiais na senha", () => {
-    LoginPage.login("admin", "adm!n@#");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(
+      loginData.users.admin.username,
+      loginData.invalid.specialPassword,
+    );
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-013 | Deve bloquear apos multiplas tentativas falhadas", () => {
     for (let attempt = 0; attempt < 5; attempt += 1) {
-      LoginPage.login("admin", "senhaerrada");
+      LoginPage.login(
+        loginData.users.admin.username,
+        loginData.invalid.wrongPassword,
+      );
     }
-    LoginPage.expectMessageContains("Muitas tentativas de login");
+    LoginPage.expectMessageContains(loginData.messages.rateLimit);
     LoginPage.expectNotOnDashboard();
   });
 
   it("CT-LOG-014 | Deve manter sessao apos login", () => {
-    LoginPage.login("admin", "admin123");
+    LoginPage.login(loginData.users.admin.username, loginData.users.admin.password);
     LoginPage.expectOnDashboard();
     cy.reload();
     LoginPage.expectOnDashboard();
     cy.window().then((win) => {
       expect(win.localStorage.getItem("loggedIn")).to.equal("true");
       const user = JSON.parse(win.localStorage.getItem("user"));
-      expect(user.username).to.equal("admin");
+      expect(user.username).to.equal(loginData.users.admin.username);
     });
   });
 
   it("CT-LOG-015 | Deve rejeitar tentativa de SQL Injection", () => {
-    LoginPage.login("admin' OR '1'='1", "qualquer123");
-    LoginPage.expectMessageContains("Usuário ou senha incorretos");
+    LoginPage.login(
+      loginData.invalid.sqlInjectionUser,
+      loginData.invalid.anyPassword,
+    );
+    LoginPage.expectMessageContains(loginData.messages.genericError);
     LoginPage.expectNotOnDashboard();
   });
 

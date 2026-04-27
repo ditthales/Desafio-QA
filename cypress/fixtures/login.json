@@ -1,0 +1,36 @@
+{
+  "users": {
+    "admin": {
+      "username": "admin",
+      "password": "admin123"
+    },
+    "user": {
+      "username": "user",
+      "password": "user123"
+    },
+    "teste": {
+      "username": "teste",
+      "password": "123456"
+    }
+  },
+  "invalid": {
+    "wrongPassword": "senhaerrada",
+    "ghostUser": "ghost",
+    "nonexistentUser": "naoexiste",
+    "nonexistentPassword": "semSenha123",
+    "spaces": "   ",
+    "paddedUser": "  admin  ",
+    "paddedPassword": "  admin123  ",
+    "specialUser": "adm!n@#",
+    "specialPassword": "adm!n@#",
+    "sqlInjectionUser": "admin' OR '1'='1",
+    "anyPassword": "qualquer123"
+  },
+  "messages": {
+    "success": "Login realizado com sucesso!",
+    "genericError": "Usuário ou senha incorretos",
+    "emptyFields": "Por favor, preencha todos os campos",
+    "rateLimit": "Muitas tentativas de login",
+    "healthRequired": "Usuário e senha são obrigatórios"
+  }
+}
