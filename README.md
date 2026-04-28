@@ -53,17 +53,16 @@ Pré-requisitos:
 - Dependências instaladas: `npm install`
 - Aplicação rodando em `http://localhost:3000`
 
-Execução headless (somente login):
+Execução headless (somente login, com health check primeiro):
 
 ```bash
-npx cypress run --spec cypress/e2e/login.cy.js
+npm run test:login
 ```
 
-Execução interativa (somente login):
+Observações do health check:
 
-```bash
-npx cypress open --spec cypress/e2e/login.cy.js
-```
+- O spec [cypress/e2e/login.health.cy.js](cypress/e2e/login.health.cy.js) roda primeiro.
+- Se ele falhar, o segundo comando nao executa.
 
 Observações importantes:
 
