@@ -1972,6 +1972,10 @@ secret: "123456"
 - **Sistema Operacional**: Macbook Pro M1
 - **Data do Teste**: 25/04/2026
 
+### Passos para Reproduzir
+
+1. Acessar /api/users?secret=admin123
+
 ### Resultado Esperado
 
 Sessão deve usar secret forte, único e carregado por variável de ambiente.
