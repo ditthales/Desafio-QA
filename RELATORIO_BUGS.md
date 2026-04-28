@@ -66,9 +66,9 @@
 <a id="bug-001"></a>
 ### BUG-001: Registro aceita caracteres especiais no username
 
-**Severidade**: Média
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | UX/UI | Aberto |
 
 #### Descrição
 
@@ -107,9 +107,9 @@ Validar username com regex, permitindo apenas caracteres alfanuméricos.
 <a id="bug-002"></a>
 ### BUG-002: Registro aceita espaços no username
 
-**Severidade**: Média
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | UX/UI | Aberto |
 
 #### Descrição
 
@@ -148,9 +148,9 @@ Aplicar trim no username e bloquear espaços internos.
 <a id="bug-003"></a>
 ### BUG-003: Sem feedback instantâneo para email e senha
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -183,9 +183,9 @@ Usuário só descobre erros após enviar o formulário, aumentando retrabalho.
 <a id="bug-004"></a>
 ### BUG-004: Sem regra de senha (aceita qualquer valor)
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -224,9 +224,9 @@ Aplicar regra mínima de senha no cliente e no servidor.
 <a id="bug-005"></a>
 ### BUG-005: Registro faz login automaticamente
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -261,9 +261,9 @@ Fluxo pode violar requisitos de segurança ou de confirmação de cadastro.
 <a id="bug-006"></a>
 ### BUG-006: Campo username aceita HTML injection
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -303,9 +303,9 @@ Sanitizar e escapar HTML no backend e frontend.
 <a id="bug-007"></a>
 ### BUG-007: Campo de email usa tipo texto
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -344,9 +344,9 @@ Alterar type do input para "email".
 <a id="bug-008"></a>
 ### BUG-008: Login sem validação de username (caracteres e espaços)
 
-**Severidade**: Média
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | UX/UI | Aberto |
 
 #### Descrição
 
@@ -380,9 +380,9 @@ Permite inconsistências de formato e comportamento inesperado no login.
 <a id="bug-009"></a>
 ### BUG-009: Login aceita username apenas com espaços
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -416,9 +416,9 @@ Validação fraca permite inputs inválidos e possíveis erros de autenticação
 <a id="bug-010"></a>
 ### BUG-010: Mensagem de erro revela se usuário existe
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -452,9 +452,9 @@ Facilita enumeração de usuários válidos.
 <a id="bug-011"></a>
 ### BUG-011: Mensagem de erro desaparece rapidamente
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -488,9 +488,9 @@ Usuário pode não conseguir entender o erro.
 <a id="bug-012"></a>
 ### BUG-012: Itens da tela "sambam" ao exibir/esconder mensagem
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -523,9 +523,9 @@ Experiência visual inconsistente e sensação de instabilidade.
 <a id="bug-013"></a>
 ### BUG-013: Sem bloqueio efetivo por tentativas consecutivas
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -559,9 +559,9 @@ Facilita ataques de força bruta.
 <a id="bug-014"></a>
 ### BUG-014: Campos não são limpos após submit
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -594,9 +594,9 @@ Pode expor credenciais em tela e atrapalhar novas tentativas.
 <a id="bug-015"></a>
 ### BUG-015: Login aceita senha errada após várias tentativas
 
-**Severidade**: Crítica
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Crítica | Segurança | Aberto |
 
 #### Descrição
 
@@ -634,9 +634,9 @@ Remover lógica aleatória e validar senha de forma determinística.
 <a id="bug-016"></a>
 ### BUG-016: Rate limit não é resetado após login bem-sucedido
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -672,9 +672,9 @@ Usuário pode sofrer bloqueio indevido após tentativas antigas.
 <a id="bug-017"></a>
 ### BUG-017: Reset de senha sem verificação de segurança
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -713,9 +713,9 @@ Implementar fluxo com token de verificação e confirmação por email.
 <a id="bug-018"></a>
 ### BUG-018: Reset de senha aceita usuário vazio
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -750,9 +750,9 @@ Feedback incorreto e validação insuficiente.
 <a id="bug-019"></a>
 ### BUG-019: Reset de senha aceita senha vazia
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -787,9 +787,9 @@ Conta fica vulnerável, permitindo login sem senha.
 <a id="bug-020"></a>
 ### BUG-020: Reset de senha sem regra para nova senha
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -828,9 +828,9 @@ Aplicar regras mínimas no backend e no frontend.
 <a id="bug-021"></a>
 ### BUG-021: Reset de senha sem confirmação de senha
 
-**Severidade**: Média
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | UX/UI | Aberto |
 
 #### Descrição
 
@@ -868,9 +868,9 @@ Usuário pode definir senha incorreta sem perceber.
 <a id="bug-022"></a>
 ### BUG-022: Painel administrativo visível para não-admins
 
-**Severidade**: Média
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | UX/UI | Aberto |
 
 #### Descrição
 
@@ -903,9 +903,9 @@ Exposição de funcionalidades que não deveriam ser acessíveis.
 <a id="bug-023"></a>
 ### BUG-023: Painel exibe senha de todos os usuários
 
-**Severidade**: Crítica
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Crítica | Segurança | Aberto |
 
 #### Descrição
 
@@ -938,9 +938,9 @@ Exposição de credenciais de todos os usuários.
 <a id="bug-024"></a>
 ### BUG-024: Senha do usuário exibida em informações do usuário
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -972,9 +972,9 @@ Exposição de informação sensível na UI.
 <a id="bug-025"></a>
 ### BUG-025: Botão de sair com tamanho excessivo
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -1006,9 +1006,9 @@ Compromete a estética e a experiência do usuário.
 <a id="bug-026"></a>
 ### BUG-026: Sessão muito longa mesmo sem lembrar-me
 
-**Severidade**: Média
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Segurança | Aberto |
 
 #### Descrição
 
@@ -1041,9 +1041,9 @@ Aumenta risco de acesso indevido em máquinas compartilhadas.
 <a id="bug-027"></a>
 ### BUG-027: Botão de dashboard dentro do dashboard
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -1075,9 +1075,9 @@ Poluição visual e confusão na navegação.
 <a id="bug-028"></a>
 ### BUG-028: Endpoint /user retorna senha
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -1110,9 +1110,9 @@ Exposição de credenciais via API.
 <a id="bug-029"></a>
 ### BUG-029: Senha em texto no localStorage
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -1145,9 +1145,9 @@ Exposição de credenciais em storage local.
 <a id="bug-030"></a>
 ### BUG-030: Bypass por query permite acessar dashboard e dados
 
-**Severidade**: Crítica
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Crítica | Segurança | Aberto |
 
 #### Descrição
 
@@ -1180,9 +1180,9 @@ Permite acesso não autorizado a dados de todos os usuários.
 <a id="bug-031"></a>
 ### BUG-031: Bypass sem sessão mantém acesso ao dashboard
 
-**Severidade**: Crítica
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Crítica | Segurança | Aberto |
 
 #### Descrição
 
@@ -1218,9 +1218,9 @@ Facilita acesso não autorizado ao sistema.
 <a id="bug-032"></a>
 ### BUG-032: Campos obrigatórios sem indicação
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -1252,9 +1252,9 @@ Usuário pode não entender quais campos são obrigatórios.
 <a id="bug-033"></a>
 ### BUG-033: Nota aceita valores maiores que 10
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -1288,9 +1288,9 @@ Dados inconsistentes na avaliação.
 <a id="bug-034"></a>
 ### BUG-034: Nota e campos numéricos aceitam valores negativos
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -1325,9 +1325,9 @@ Dados inválidos registrados no sistema.
 <a id="bug-035"></a>
 ### BUG-035: Permite enviar sem status
 
-**Severidade**: Baixa
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | Lógica | Aberto |
 
 #### Descrição
 
@@ -1361,9 +1361,9 @@ Coletas ficam registradas como "Em progresso", mas isso não é informado pelo u
 <a id="bug-036"></a>
 ### BUG-036: Nota e campos numéricos aceitam potência
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -1398,9 +1398,9 @@ Dados inconsistentes podem ser gravados com risco de estouro de memória em caso
 <a id="bug-037"></a>
 ### BUG-037: Nome aceita números e caracteres especiais
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -1434,9 +1434,9 @@ Dados de beneficiário inconsistentes.
 <a id="bug-038"></a>
 ### BUG-038: Sem retorno para o dashboard a partir da coleta
 
-**Severidade**: Baixa
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Baixa | UX/UI | Aberto |
 
 #### Descrição
 
@@ -1468,9 +1468,9 @@ Navegação confusa e retenção indevida na tela.
 <a id="bug-039"></a>
 ### BUG-039: Campos sem limite de caracteres
 
-**Severidade**: Média
-**Categoria**: UX/UI
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | UX/UI | Aberto |
 
 #### Descrição
 
@@ -1503,9 +1503,9 @@ Risco de inconsistência nos dados e degradação de performance.
 <a id="bug-040"></a>
 ### BUG-040: Campos sem sanitização
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -1542,9 +1542,9 @@ Risco de XSS e exposição de usuários.
 <a id="bug-041"></a>
 ### BUG-041: Validação de duplicatas não funciona no lote
 
-**Severidade**: Alta
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Lógica | Aberto |
 
 #### Descrição
 
@@ -1577,9 +1577,9 @@ Dados inconsistentes e duplicados no sistema.
 <a id="bug-042"></a>
 ### BUG-042: Lote não processa arquivo e retorna sucesso aleatório
 
-**Severidade**: Alta
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Lógica | Aberto |
 
 #### Descrição
 
@@ -1613,9 +1613,9 @@ Falsa percepção de processamento e risco de perda de dados.
 <a id="bug-043"></a>
 ### BUG-043: Lote não valida arquivo vazio ou fora do padrão
 
-**Severidade**: Alta
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Lógica | Aberto |
 
 #### Descrição
 
@@ -1651,9 +1651,9 @@ Dados inválidos podem ser processados sem detecção.
 <a id="bug-044"></a>
 ### BUG-044: Histórico mostra registros duplicados
 
-**Severidade**: Média
-**Categoria**: Lógica
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Média | Lógica | Aberto |
 
 #### Descrição
 
@@ -1687,9 +1687,9 @@ Confunde o usuário e pode levar à interpretação incorreta dos dados.
 <a id="bug-045"></a>
 ### BUG-045: Histórico mostra dados de todos os usuários
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -1722,9 +1722,9 @@ Exposição indevida de dados de terceiros.
 <a id="bug-046"></a>
 ### BUG-046: Histórico expõe ID de outros usuários
 
-**Severidade**: Alta
-**Categoria**: Segurança
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Segurança | Aberto |
 
 #### Descrição
 
@@ -1760,9 +1760,9 @@ Vazamento de dados sensíveis.
 <a id="bug-047"></a>
 ### BUG-047: Query de login vulnerável a SQL injection
 
-**Severidade**: Critica
-**Categoria**: Seguranca
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Critica | Seguranca | Aberto |
 
 #### Descrição
 
@@ -1804,9 +1804,9 @@ Usar prepared statements/ORM e sanitizar entradas.
 <a id="bug-048"></a>
 ### BUG-048: /api/user expõe email e senha
 
-**Severidade**: Alta
-**Categoria**: Seguranca
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Seguranca | Aberto |
 
 #### Descrição
 
@@ -1857,9 +1857,9 @@ Retornar apenas campos necessários e remover `password` do payload.
 <a id="bug-049"></a>
 ### BUG-049: Logout não destrói sessão no servidor
 
-**Severidade**: Alta
-**Categoria**: Seguranca
-**Status**: Aberto
+| Severidade | Categoria | Status |
+| --- | --- | --- |
+| Alta | Seguranca | Aberto |
 
 #### Descrição
 
